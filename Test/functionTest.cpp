@@ -12,10 +12,8 @@ int main(){
 
     //shift by set amount (default args)
     std::cout << encrypt1("akjg8",dict,6) << std::endl;
-
     //shift by length of string (default args)
     std::cout << encrypt2("ac0",dict) << std::endl;
-
     newln();
 
     //run tests: Pass
@@ -29,6 +27,7 @@ int main(){
         encrypt2("ac0",dict),
         "dfc"
     );
+    newln();
 
     //run tests: Fail
     assertPF(
@@ -41,7 +40,6 @@ int main(){
         encrypt2("aC0",dict),
         "dfc"
     );
-
     newln();
 
     /*

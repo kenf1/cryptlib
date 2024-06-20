@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 //backend logic for encrypting input string, case sensitive
 std::string encryptLogic(
@@ -25,8 +26,8 @@ std::string encryptLogic(
                 arr.push_back(refDict.at(shiftPos));
             }
         }else{
-            //use placeholder for anything not found in refDict
-            arr.push_back(notFound);
+            std::cerr << "Input string contains character not found in refDict" << std::endl;
+            return "Error";
         }
     }
 
@@ -34,7 +35,7 @@ std::string encryptLogic(
     return cryptStr;
 }
 
-//replace error
+//replace error (use std::cerr instead)
 std::string replaceError(
     std::string cryptStr,
     std::string errorMsg="Error",
@@ -53,23 +54,17 @@ std::string encrypt1(
     std::string input,
     std::string refDict,
     int offset=6,
-    std::string errorMsg="Error",
     char notFound='|'
 ){
-    return replaceError(
-        encryptLogic(input,refDict,offset,notFound)
-    );
+    return encryptLogic(input,refDict,offset,notFound);
 }
 
 //shift by length of string (wrapper)
 std::string encrypt2(
     std::string input,
     std::string refDict,
-    std::string errorMsg="Error",
     char notFound='|'
 ){
     int offset = input.length();
-    return replaceError(
-        encryptLogic(input,refDict,offset,notFound)
-    );
+    return encryptLogic(input,refDict,offset,notFound);
 }
