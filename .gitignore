@@ -36,3 +36,6 @@ Dev/
 .DS_Store
 functionTest
 !functionTest.cpp
+key.txt
+importkey
+!importkey.cpp

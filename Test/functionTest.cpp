@@ -1,5 +1,10 @@
 #include "../src/cryptlib.cpp"
+#include "assertFunc.cpp"
 #include <iostream>
+
+void newln(){
+    std::cout << "\n";
+}
 
 int main(){
     //encryption dict
@@ -10,6 +15,34 @@ int main(){
 
     //shift by length of string (default args)
     std::cout << encrypt2("ac0",dict) << std::endl;
+
+    newln();
+
+    //run tests: Pass
+    assertPF(
+        "Char only",
+        encrypt1("akjg8",dict,6),
+        "gqpmd"
+    );
+    assertPF(
+        "Char + Int",
+        encrypt2("ac0",dict),
+        "dfc"
+    );
+
+    //run tests: Fail
+    assertPF(
+        "Char only",
+        encrypt1("akJg8",dict,6),
+        "gqpmd"
+    );
+    assertPF(
+        "Char + Int",
+        encrypt2("aC0",dict),
+        "dfc"
+    );
+
+    newln();
 
     /*
         expect error (default args)

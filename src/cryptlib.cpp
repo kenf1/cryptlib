@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 
-//backend logic for encrypting input string
+//backend logic for encrypting input string, case sensitive
 std::string encryptLogic(
     std::string input,
     std::string refDict,
