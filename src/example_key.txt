@@ -1,2 +1,2 @@
-Paste key without "" here.
-Note that spaces and new lines matter.
+Paste key without "" as single line here.
+Spaces and escape sequences are not supported.

@@ -3,11 +3,11 @@
 #include <iostream>
 
 //backend logic for encrypting input string, case sensitive
-std::string encryptLogic(
+std::string cryptLogic(
+    std::string ver, //accepted values: encrypt, decrypt
     std::string input,
-    std::string refDict,
-    int offset=6,
-    char notFound='|'
+    std::string& refDict,
+    int offset=6
 ){
     std::vector<char> arr = {};
 
@@ -16,15 +16,33 @@ std::string encryptLogic(
         size_t index = refDict.find(c);
 
         if(index != std::string::npos){
-            int shiftPos = index + offset;
+            //encrypt
+            if(ver == "encrypt"){
+                int shiftPos = index + offset;
 
-            //loop to beginning if overflow
-            if(shiftPos >= refDict.length()){
-                int loopOffset = (shiftPos-refDict.length());
-                arr.push_back(refDict.at(loopOffset));
-            }else{
-                arr.push_back(refDict.at(shiftPos));
+                //loop to beginning if overflow
+                if(shiftPos >= refDict.length()){
+                    int loopOffset = (shiftPos-refDict.length());
+                    arr.push_back(refDict.at(loopOffset));
+                }else{
+                    arr.push_back(refDict.at(shiftPos));
+                }
             }
+
+            //decrypt
+            if(ver == "decrypt"){
+                int shiftPos = index - offset;
+
+                //loop from end when overflow
+                if(shiftPos < 0){
+                    int loopOffset = (refDict.length()-abs(shiftPos));
+                    arr.push_back(refDict.at(loopOffset));
+                }else{
+                    arr.push_back(refDict.at(shiftPos));
+                }
+            }
+
+        //char not in refDict
         }else{
             std::cerr << "Input string contains character not found in refDict" << std::endl;
             return "Error";
@@ -35,7 +53,50 @@ std::string encryptLogic(
     return cryptStr;
 }
 
-//replace error (use std::cerr instead)
+//shift by set amount (wrapper)
+std::string encrypt1(
+    std::string input,
+    std::string& refDict,
+    int offset=6,
+    std::string ver="encrypt"
+){
+    return cryptLogic(ver,input,refDict,offset);
+}
+
+//shift by set amount (wrapper)
+std::string decrypt1(
+    std::string input,
+    std::string& refDict,
+    int offset=6,
+    std::string ver="decrypt"
+){
+    return cryptLogic(ver,input,refDict,offset);
+}
+
+//shift by length of string (wrapper)
+std::string encrypt2(
+    std::string input,
+    std::string& refDict,
+    std::string ver="encrypt"
+){
+    int offset = input.length();
+    return cryptLogic(ver,input,refDict,offset);
+}
+
+//shift by length of string (wrapper)
+std::string decrypt2(
+    std::string input,
+    std::string& refDict,
+    std::string ver="decrypt"
+){
+    int offset = input.length();
+    return cryptLogic(ver,input,refDict,offset);
+}
+
+/*
+    ARCHIVED
+    returns error message if input string contains notFound char
+*/
 std::string replaceError(
     std::string cryptStr,
     std::string errorMsg="Error",
@@ -47,24 +108,4 @@ std::string replaceError(
     }else{
         return cryptStr;
     }
-}
-
-//shift by set amount (wrapper)
-std::string encrypt1(
-    std::string input,
-    std::string refDict,
-    int offset=6,
-    char notFound='|'
-){
-    return encryptLogic(input,refDict,offset,notFound);
-}
-
-//shift by length of string (wrapper)
-std::string encrypt2(
-    std::string input,
-    std::string refDict,
-    char notFound='|'
-){
-    int offset = input.length();
-    return encryptLogic(input,refDict,offset,notFound);
 }

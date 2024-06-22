@@ -6,49 +6,45 @@ void newln(){
     std::cout << "\n";
 }
 
-int main(){
-    //encryption dict
-    std::string dict = "abcdefghijklmnopqrstuvwxyz1234567890";
-
+//encrypt: print output (dict passed by reference)
+void testOutput(std::string& dict){
     //shift by set amount (default args)
     std::cout << encrypt1("akjg8",dict,6) << std::endl;
     //shift by length of string (default args)
     std::cout << encrypt2("ac0",dict) << std::endl;
     newln();
+}
 
-    //run tests: Pass
-    assertPF(
-        "Char only",
-        encrypt1("akjg8",dict,6),
-        "gqpmd"
-    );
-    assertPF(
-        "Char + Int",
-        encrypt2("ac0",dict),
-        "dfc"
-    );
+int main(){
+    //encryption dict
+    std::string dict = "abcdefghijklmnopqrstuvwxyz1234567890";
+
+    // testOutput(dict);
+
+    //encrypt: PASS
+    assertPF("Char only",encrypt1("akjg8",dict,6),"gqpmd");
+    assertPF("Char + Int",encrypt2("ac0",dict),"dfc");
     newln();
 
-    //run tests: Fail
-    assertPF(
-        "Char only",
-        encrypt1("akJg8",dict,6),
-        "gqpmd"
-    );
-    assertPF(
-        "Char + Int",
-        encrypt2("aC0",dict),
-        "dfc"
-    );
+    //encrypt: FAIL (case-sensitive input)
+    assertPF("Char only",encrypt1("akJg8",dict,6),"gqpmd");
+    assertPF("Char + Int",encrypt2("aC0",dict),"dfc");
     newln();
 
-    /*
-        expect error (default args)
-        `=` not found in dict
-    */
+    //encrypt: FAIL (char not in dict)
     std::string errStr = "ak=jg";
     std::cout << encrypt1(errStr,dict) << std::endl;
     std::cout << encrypt2(errStr,dict) << std::endl;
+    newln();
+
+    //decrypt PASS
+    assertPF("Char only",decrypt1("gqpmd",dict,6),"akjg8");
+    assertPF("Char + Int",decrypt2("dfc",dict),"ac0");
+    newln();
+
+    //decrypt FAIL
+    assertPF("Char only",decrypt1("gQpmd",dict,6),"akjg8");
+    assertPF("Char + Int",decrypt2("dfC",dict),"ac0");
 
     return 0;
 }
