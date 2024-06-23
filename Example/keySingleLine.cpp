@@ -9,11 +9,11 @@ int main(){
 
     //encrypt
     std::string encryptedMessage = encrypt1("PLACEHOLDER",cryptKey);
-    std::cout << encryptedMessage << "\n";
+    std::cout << encryptedMessage << std::endl;
 
     //decrypt
     std::string decryptedMessage = decrypt1("PLACEHOLDER",cryptKey);
-    std::cout << decryptedMessage << "\n";
+    std::cout << decryptedMessage << std::endl;
 
     return 0;
 }

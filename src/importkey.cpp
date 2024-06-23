@@ -12,6 +12,7 @@ std::string importKeySL(std::string fileName){
         return "Fail"; //break
     }
 
+    //read 1st line (remaining lines ignored)
     std::string fileContent;
     std::getline(txtFile,fileContent);
 
@@ -26,7 +27,7 @@ std::vector<std::string> importKeyML(std::string fileName){
 
     if(!txtFile.is_open()){
         std::cerr << "Unable to open file" << std::endl;
-        return vec; //break: return empty vector
+        return vec; //break
     }
 
     //read + append each line to vector

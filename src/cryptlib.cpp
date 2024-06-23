@@ -94,7 +94,7 @@ std::string decrypt2(
 }
 
 /*
-    ARCHIVED
+    DEPRECIATED
     returns error message if input string contains notFound char
 */
 std::string replaceError(
