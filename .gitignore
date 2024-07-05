@@ -42,6 +42,7 @@ src/*
 
 Test/*
 !Test/*.cpp
+!Test/testkey.txt
 
 Example/*
 !Example/*.cpp

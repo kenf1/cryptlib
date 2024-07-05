@@ -57,40 +57,36 @@ std::string cryptLogic(
 std::string encrypt1(
     std::string input,
     std::string& refDict,
-    int offset=6,
-    std::string ver="encrypt"
+    int offset=6
 ){
-    return cryptLogic(ver,input,refDict,offset);
+    return cryptLogic("encrypt",input,refDict,offset);
 }
 
 //shift by set amount (wrapper)
 std::string decrypt1(
     std::string input,
     std::string& refDict,
-    int offset=6,
-    std::string ver="decrypt"
+    int offset=6
 ){
-    return cryptLogic(ver,input,refDict,offset);
+    return cryptLogic("decrypt",input,refDict,offset);
 }
 
 //shift by length of string (wrapper)
 std::string encrypt2(
     std::string input,
-    std::string& refDict,
-    std::string ver="encrypt"
+    std::string& refDict
 ){
     int offset = input.length();
-    return cryptLogic(ver,input,refDict,offset);
+    return cryptLogic("encrypt",input,refDict,offset);
 }
 
 //shift by length of string (wrapper)
 std::string decrypt2(
     std::string input,
-    std::string& refDict,
-    std::string ver="decrypt"
+    std::string& refDict
 ){
     int offset = input.length();
-    return cryptLogic(ver,input,refDict,offset);
+    return cryptLogic("decrypt",input,refDict,offset);
 }
 
 /*

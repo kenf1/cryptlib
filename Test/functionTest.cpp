@@ -1,4 +1,5 @@
 #include "../src/cryptlib.cpp"
+#include "../src/importkey.cpp"
 #include "assertFunc.cpp"
 #include <iostream>
 
@@ -16,10 +17,15 @@ void testOutput(std::string& dict){
 }
 
 int main(){
-    //encryption dict
-    std::string dict = "abcdefghijklmnopqrstuvwxyz1234567890";
+    //encryption dict (single line)
+    std::string dict = importKeySL("testkey.txt");
 
     // testOutput(dict);
+
+    //encryption dict (multi line)
+    std::vector<std::string> txtContents = importKeyML("testkey.txt");
+    std::cout << txtContents[1] << std::endl;
+    newln();
 
     //encrypt: PASS
     assertPF("Char only",encrypt1("akjg8",dict,6),"gqpmd");
