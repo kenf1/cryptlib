@@ -10,9 +10,9 @@ void newln(){
 //encrypt: print output (dict passed by reference)
 void testOutput(std::string& dict){
     //shift by set amount (default args)
-    std::cout << encrypt1("akjg8",dict,6) << std::endl;
+    std::cout << encrypt1("akjg8",dict,6) << "\n";
     //shift by length of string (default args)
-    std::cout << encrypt2("ac0",dict) << std::endl;
+    std::cout << encrypt2("ac0",dict) << "\n";
     newln();
 }
 
@@ -24,7 +24,7 @@ int main(){
 
     //encryption dict (multi line)
     std::vector<std::string> txtContents = importKeyML("testkey.txt");
-    std::cout << txtContents[1] << std::endl;
+    std::cout << txtContents[1] << "\n";
     newln();
 
     //encrypt: PASS
@@ -39,8 +39,8 @@ int main(){
 
     //encrypt: FAIL (char not in dict)
     std::string errStr = "ak=jg";
-    std::cout << encrypt1(errStr,dict) << std::endl;
-    std::cout << encrypt2(errStr,dict) << std::endl;
+    std::cout << encrypt1(errStr,dict) << "\n";
+    std::cout << encrypt2(errStr,dict) << "\n";
     newln();
 
     //decrypt PASS

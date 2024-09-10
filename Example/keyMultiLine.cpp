@@ -14,11 +14,11 @@ int main(){
 
     //encrypt
     std::string encryptedMessage = encrypt1("PLACEHOLDER",cryptKey[0],stoi(cryptKey[1]));
-    std::cout << encryptedMessage << std::endl;
+    std::cout << encryptedMessage << "\n";
 
     //decrypt
     std::string decryptedMessage = decrypt1("PLACEHOLDER",cryptKey[0],stoi(cryptKey[1]));
-    std::cout << decryptedMessage << std::endl;
+    std::cout << decryptedMessage << "\n";
 
     return 0;
 }

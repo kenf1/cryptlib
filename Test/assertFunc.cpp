@@ -12,8 +12,8 @@ void assertPF(
 ){
     std::cout << testName << ": ";
     if(inputStr == expectedStr){
-        std::cout << "Pass" << std::endl;
+        std::cout << "Pass\n";
     }else{
-        std::cout << "Fail" << std::endl;
+        std::cout << "Fail\n";
     }
 }

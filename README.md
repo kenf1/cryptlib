@@ -1,6 +1,8 @@
 ## cryptlib
 
-A C++ library for basic string encryption/decryption.
+A C++ library for basic string encryption/decryption. Based on ROT13 algorithm.
 
-> Proof of concept  
-> Not intended for production  
+### Usage
+
+- For learning purpose only
+- "virtually no cryptographic security" = not intended for production
