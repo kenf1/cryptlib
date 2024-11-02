@@ -27,6 +27,12 @@ int main(){
     std::cout << txtContents[1] << "\n";
     newln();
 
+    //encrypt: FAIL (char not in dict)
+    std::string errStr = "ak=jg";
+    std::cout << encrypt1(errStr,dict);
+    std::cout << encrypt2(errStr,dict);
+    newln();
+
     //encrypt: PASS
     assertPF("Char only",encrypt1("akjg8",dict,6),"gqpmd");
     assertPF("Char + Int",encrypt2("ac0",dict),"dfc");
@@ -35,12 +41,6 @@ int main(){
     //encrypt: FAIL (case-sensitive input)
     assertPF("Char only",encrypt1("akJg8",dict,6),"gqpmd");
     assertPF("Char + Int",encrypt2("aC0",dict),"dfc");
-    newln();
-
-    //encrypt: FAIL (char not in dict)
-    std::string errStr = "ak=jg";
-    std::cout << encrypt1(errStr,dict) << "\n";
-    std::cout << encrypt2(errStr,dict) << "\n";
     newln();
 
     //decrypt PASS

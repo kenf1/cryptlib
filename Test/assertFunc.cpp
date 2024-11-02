@@ -11,6 +11,7 @@ void assertPF(
     std::string expectedStr
 ){
     std::cout << testName << ": ";
+
     if(inputStr == expectedStr){
         std::cout << "Pass\n";
     }else{

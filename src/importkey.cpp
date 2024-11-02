@@ -8,8 +8,7 @@ std::string importKeySL(std::string fileName){
     std::ifstream txtFile(fileName);
 
     if(!txtFile.is_open()){
-        std::cerr << "Unable to open file" << std::endl;
-        return "Fail"; //break
+        std::cerr << "Unable to open file\n";
     }
 
     //read 1st line (remaining lines ignored)
@@ -26,13 +25,13 @@ std::vector<std::string> importKeyML(std::string fileName){
     std::ifstream txtFile(fileName);
 
     if(!txtFile.is_open()){
-        std::cerr << "Unable to open file" << std::endl;
-        return vec; //break
+        std::cerr << "Unable to open file\n";
+        return vec; //empty
     }
 
     //read + append each line to vector
     std::string fileContent;
-    while(std::getline(txtFile,fileContent)) {
+    while(std::getline(txtFile,fileContent)){
         vec.push_back(fileContent);
     }
 
