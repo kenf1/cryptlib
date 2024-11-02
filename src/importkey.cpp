@@ -3,38 +3,42 @@
 #include <string>
 #include <vector>
 
-//import key, only reads line 1 of txt file
-std::string importKeySL(std::string fileName){
-    std::ifstream txtFile(fileName);
+//all functions for importing key file
+class KeyReader{
+public:
+    // import key, only reads line 1 of txt file
+    std::string importKeySL(std::string fileName){
+        std::ifstream txtFile(fileName);
 
-    if(!txtFile.is_open()){
-        std::cerr << "Unable to open file\n";
+        if(!txtFile.is_open()){
+            std::cerr << "Unable to open file\n";
+        }
+
+        // read 1st line (remaining lines ignored)
+        std::string fileContent;
+        std::getline(txtFile,fileContent);
+
+        txtFile.close();
+        return fileContent;
     }
 
-    //read 1st line (remaining lines ignored)
-    std::string fileContent;
-    std::getline(txtFile,fileContent);
+    // import key, all lines -> vector
+    std::vector<std::string> importKeyML(std::string fileName){
+        std::vector<std::string> vec;
+        std::ifstream txtFile(fileName);
 
-    txtFile.close();
-    return fileContent;
-}
+        if(!txtFile.is_open()){
+            std::cerr << "Unable to open file\n";
+            return vec; // empty
+        }
 
-//import key, all lines -> vector
-std::vector<std::string> importKeyML(std::string fileName){
-    std::vector<std::string> vec;
-    std::ifstream txtFile(fileName);
+        // read + append each line to vector
+        std::string fileContent;
+        while(std::getline(txtFile,fileContent)){
+            vec.push_back(fileContent);
+        }
 
-    if(!txtFile.is_open()){
-        std::cerr << "Unable to open file\n";
-        return vec; //empty
+        txtFile.close();
+        return vec;
     }
-
-    //read + append each line to vector
-    std::string fileContent;
-    while(std::getline(txtFile,fileContent)){
-        vec.push_back(fileContent);
-    }
-
-    txtFile.close();
-    return vec;
-}
+};

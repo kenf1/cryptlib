@@ -4,15 +4,23 @@
 #include <string>
 
 int main(){
+    //create instances
+    KeyReader kr;
+    CoreLogic cl;
+
     //import key from `key.txt` as string
-    std::string cryptKey = importKeySL("../src/key.txt");
+    std::string cryptKey = kr.importKeySL("../src/key.txt");
 
     //encrypt
-    std::string encryptedMessage = encrypt1("PLACEHOLDER",cryptKey);
+    std::string encryptedMessage = cl.encrypt1(
+        "PLACEHOLDER",cryptKey
+    );
     std::cout << encryptedMessage << "\n";
 
     //decrypt
-    std::string decryptedMessage = decrypt1("PLACEHOLDER",cryptKey);
+    std::string decryptedMessage = cl.decrypt1(
+        "PLACEHOLDER",cryptKey
+    );
     std::cout << decryptedMessage << "\n";
 
     return 0;
