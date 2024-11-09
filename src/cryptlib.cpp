@@ -7,7 +7,7 @@ class CoreLogic{
 public:
     //backend logic for encrypting input string, case sensitive
     std::string cryptLogic(
-        std::string ver, //accepted values: encrypt, decrypt
+        std::string ver, //case-sensitive, accepted values: encrypt, decrypt
         std::string input,
         const std::string& refDict,
         int offset
@@ -26,27 +26,21 @@ public:
                 return "";
             }
 
-            //not 1 of accepted values
-            if(ver != "encrypt" && ver != "decrypt"){
-                std::cerr << "Accepted options are `encrypt` and `decrypt`\n";
-                return "";
-            }
-
-            if(ver == "encrypt"){
+            //branch point
+            if(ver.compare("encrypt") == 0){
                 size_t newIndex = (index + offset) % refDict.size();
                 arr += refDict[newIndex];
-            }
-
-            if(ver == "decrypt"){
+            }else if(ver.compare("decrypt") == 0){
                 size_t newIndex = (index - offset + refDict.size()) % refDict.size();
                 arr += refDict[newIndex];
+            }else{
+                std::cerr << "Accepted options are `encrypt` and `decrypt`\n";
+                return "";
             }
         }
 
         return arr;
     }
-
-    //wrapper functions
 
     //shift by set amount (wrapper)
     std::string encrypt1(

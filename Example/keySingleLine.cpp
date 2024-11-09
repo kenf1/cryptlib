@@ -1,7 +1,8 @@
-#include "../src/cryptlib.cpp"
-#include "../src/importkey.cpp"
 #include <iostream>
 #include <string>
+
+#include "../src/cryptlib.cpp"
+#include "../src/importkey.cpp"
 
 int main(){
     //create instances
